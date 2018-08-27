@@ -3,8 +3,9 @@ package Work;
 import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Locale;
 
-public class Employee {
+public class Employee extends  Person{
       /**
      * salary = base + bonus
      */
@@ -35,6 +36,8 @@ public class Employee {
 
 
     Employee(String firstName, String secondName, LocalDate hireDate, float salaryBase, float loyalty) {
+
+        super(firstName, secondName);
         this.firstName = firstName;
         this.secondName = secondName;
         setName();
@@ -42,7 +45,6 @@ public class Employee {
         this.salaryBase = salaryBase;
         this.loyalty = loyalty;
         setSalaryBonus();
-
 
     }
     public float getSalaryBase() {
@@ -57,7 +59,6 @@ public class Employee {
         float loyalty = this.loyalty;
         float exp = Period.between(this.hireDate, LocalDate.now()).getYears();
         float bonus = 1;
-        System.out.println(exp);
         if(loyalty < 0) {
             bonus = 0.05f * loyalty;
 
@@ -78,6 +79,7 @@ public class Employee {
         this.loyalty = loyalty - 5;
     }
 
+
     public String getName() {
         return name;
     }
@@ -88,45 +90,50 @@ public class Employee {
 
 
 
-    public float getSalary() {
-       return salaryBase * salaryBonus;
+    public String getSalary() {
+        Locale locale = new Locale("en", "US");
+        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
+        return currencyFormatter.format(salaryBase * salaryBonus);
+//       return salaryBase * salaryBonus;
     }
 
     public LocalDate getHireDate() {
         return hireDate;
     }
+
     public void raiseSalary(float salary){
         salary = salary * 3;
     }
 
     @Override
-    public String toString() {
-        return "Employee{" +
-                "salaryBase=" + salaryBase +
-                ", salaryBonus=" + salaryBonus +
-                ", salary=" + getSalary() +
+    public String getDescriprion() {
+        return "An employee " + name +
+                " with salary " + getSalary() +
+                " (base=" + salaryBase +
+                ", bonus=" + salaryBonus +
                 ", loyalty=" + loyalty +
-                ", hireDate=" + hireDate +
-                ", name='" + name + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", secondName='" + secondName + '\'' +
-                '}';
+                "), work from " + hireDate;
     }
 
+    @Override
+    public String toString() {
+        return "An employee " + name +
+                " with salary " + getSalary() +
+                " (base=" + salaryBase +
+                ", bonus=" + salaryBonus +
+                ", loyalty=" + loyalty +
+                "), work from " + hireDate;
+    }
     public static void main(String[] args) {
-        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance();
-        NumberFormat percentFormatter = NumberFormat.getPercentInstance();
-        double x = 0.3;
 
-        System.out.println(currencyFormatter.format(x));
-        System.out.println(percentFormatter.format(x));
-        Employee Jack = new Employee("Jack","Wilshere",LocalDate.of(2011,2,3),120000.00f,9);
-        System.out.println(Jack.toString());
-//        Jack.setSalaryBonus();
-
-
+        Person[] people = new Person[3];
+        people[0] = new Student("Slavick","Vinnitskyi", "Computer Science");
+        people[1] = new Employee("Slavick","Vinnitskyi", LocalDate.of(2018,2,3),300000,7);
+        people[2] = new Employee("Pasha","Solyanikov", LocalDate.of(2018,2,2),300000,6);
+        for(Person p : people){
+            System.out.println(p.getDescriprion());
+        }
+        System.out.println(people[2].equals(people[1]));
     }
-
-
 }
 
