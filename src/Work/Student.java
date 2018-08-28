@@ -7,7 +7,7 @@ public class Student extends Person {
      */
     private String major;
 
-    public Student(String firstName, String secondName, String major) {
+    Student(String firstName, String secondName, String major) {
         super(firstName, secondName);
         this.major = major;
     }

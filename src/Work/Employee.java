@@ -126,12 +126,14 @@ public class Employee extends  Person{
     }
     public static void main(String[] args) {
 
-        Person[] people = new Person[3];
+        Person[] people = new Person[4];
         people[0] = new Student("Slavick","Vinnitskyi", "Computer Science");
-        people[1] = new Employee("Slavick","Vinnitskyi", LocalDate.of(2018,2,3),300000,7);
+        people[1] = new Employee("Julia","Kotiaj", LocalDate.of(2018,2,3),300000,7);
         people[2] = new Employee("Pasha","Solyanikov", LocalDate.of(2018,2,2),300000,6);
+        people[3] = new Programmer("Kostya","Kostukevich", LocalDate.of(2017,1,2),250000,2);
         for(Person p : people){
             System.out.println(p.getDescriprion());
+            System.out.println(p.hashCode());
         }
         System.out.println(people[2].equals(people[1]));
     }
