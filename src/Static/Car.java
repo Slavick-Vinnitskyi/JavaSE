@@ -15,5 +15,7 @@ class Demo {
     public static void main(String[] args) {
         Car r8 = new Audi();
         r8.kmToMiles(10);
+        if(r8 instanceof Audi)
+        System.out.println("+");
     }
 }
