@@ -1,3 +1,5 @@
+package Loops;
+
 public class ArraySum {
     private int array[] = {5,7,3,1,4,6,7};
     public void setArray(int[] array) {
