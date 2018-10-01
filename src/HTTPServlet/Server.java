@@ -1,3 +1,5 @@
+package HTTPServlet;
+
 import java.io.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +26,7 @@ public class Server extends HttpServlet {
             out.println("<title>Заголовок</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Пример сервлета"+parameter+"</h1>");
+            out.println("<h1>Пример сервлета" + parameter + "</h1>");
             out.println("</body>");
             out.println("</html>");
         } finally {
@@ -37,11 +39,4 @@ public class Server extends HttpServlet {
         return "Пример сервлета";
     }
 
-}
-class Main{
-    public static void main(String[] args) {
-        Server server = new Server();
-
-        System.out.println(server.getServletInfo());
-    }
 }
